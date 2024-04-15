@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqvijsgp85jtw"]
+
+[ext_resource type="Script" path="res://HellCrystal.cs" id="1_qecfc"]
+[ext_resource type="PackedScene" uid="uid://sltfcy7g17kb" path="res://SkillCheck.tscn" id="2_sgf8k"]
+[ext_resource type="Texture2D" uid="uid://bmmb2sqaxr8dg" path="res://sprites/hellcrystals_sheet.png" id="2_yrrr1"]
+[ext_resource type="PackedScene" uid="uid://dncii1i8ljfsl" path="res://OffScreenMarker.tscn" id="3_ct3a7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uln2a"]
+radius = 440.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qm6m1"]
+radius = 177.0
+height = 558.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_blu5u"]
+radius = 48.0
+height = 160.0
+
+[node name="HellCrystal" type="StaticBody2D"]
+collision_layer = 3
+script = ExtResource("1_qecfc")
+
+[node name="HellCrystalSpawnBlockArea" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_uln2a")
+target_position = Vector2(0, 0)
+collide_with_areas = true
+
+[node name="HellCrystalInteractableArea" type="Area2D" parent="."]
+collision_layer = 17
+
+[node name="HellCrystalTriggerZone" type="CollisionShape2D" parent="HellCrystalInteractableArea"]
+position = Vector2(0, 188)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qm6m1")
+debug_color = Color(0.701961, 0, 0.105882, 0.419608)
+
+[node name="HellcrystalSprite" type="Sprite2D" parent="."]
+position = Vector2(6.49999, -8.99998)
+scale = Vector2(1.16993, 1.15102)
+texture = ExtResource("2_yrrr1")
+region_enabled = true
+region_rect = Rect2(196.246, 20.9243, 152.079, 247.373)
+
+[node name="HellCrystalCollider" type="CollisionShape2D" parent="."]
+position = Vector2(2, 80)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_blu5u")
+
+[node name="SkillCheck" parent="." instance=ExtResource("2_sgf8k")]
+process_mode = 4
+visible = false
+position = Vector2(-200, -185)
+
+[node name="Tooltip" type="RichTextLabel" parent="."]
+visible = false
+offset_left = -151.0
+offset_top = -163.0
+offset_right = 155.0
+offset_bottom = -123.0
+bbcode_enabled = true
+text = "[center][pulse freq=0.9]Press [b][E][/b] to mine Hell Crystals[/pulse][/center]"
+
+[node name="OffScreenMarker" parent="." instance=ExtResource("3_ct3a7")]
+modulate = Color(0.156863, 0.968627, 0.901961, 1)
+position = Vector2(-21, -45)

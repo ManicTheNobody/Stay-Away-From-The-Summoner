@@ -1,0 +1,183 @@
+[gd_scene load_steps=8 format=3 uid="uid://hd72ofkaji34"]
+
+[ext_resource type="Texture2D" uid="uid://cuiva3g2o6sr2" path="res://sprites/decoy.png" id="1_eeffh"]
+[ext_resource type="Texture2D" uid="uid://b42hsepcutc6c" path="res://sprites/imp.png" id="2_4n55f"]
+[ext_resource type="Texture2D" uid="uid://coqtgo1r4houu" path="res://sprites/hellcrystalresource.png" id="2_c88gh"]
+
+[sub_resource type="Gradient" id="Gradient_i43xb"]
+offsets = PackedFloat32Array(0, 0.461894)
+colors = PackedColorArray(0.180392, 0.278431, 0.282353, 0.756863, 0, 0, 0, 0.576471)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_adbgu"]
+gradient = SubResource("Gradient_i43xb")
+width = 93
+height = 127
+fill = 1
+fill_from = Vector2(0.478632, 0.535613)
+
+[sub_resource type="Gradient" id="Gradient_kb5c3"]
+colors = PackedColorArray(0.2, 0.2, 0.2, 0.545098, 0, 0, 0, 0.517647)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u1j05"]
+gradient = SubResource("Gradient_kb5c3")
+fill = 1
+fill_from = Vector2(0.492877, 0.487179)
+fill_to = Vector2(0.965812, 0.424501)
+
+[node name="HUD" type="CanvasLayer"]
+process_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Cooldowns" type="HBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_right = 548.0
+grow_vertical = 0
+
+[node name="SummonDecoyCooldown" type="PanelContainer" parent="MarginContainer/Control/Cooldowns"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VerticalLayout" type="VBoxContainer" parent="MarginContainer/Control/Cooldowns/SummonDecoyCooldown"]
+layout_mode = 2
+
+[node name="Container" type="Control" parent="MarginContainer/Control/Cooldowns/SummonDecoyCooldown/VerticalLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SummonDecoyCooldownProgress" type="TextureProgressBar" parent="MarginContainer/Control/Cooldowns/SummonDecoyCooldown/VerticalLayout/Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.01
+fill_mode = 5
+nine_patch_stretch = true
+texture_under = ExtResource("1_eeffh")
+texture_progress = SubResource("GradientTexture2D_adbgu")
+
+[node name="SummonDecoyCooldownSeconds" type="Label" parent="MarginContainer/Control/Cooldowns/SummonDecoyCooldown/VerticalLayout/Container"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/Control/Cooldowns/SummonDecoyCooldown/VerticalLayout"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Hotkey: 1"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="SummonWorkerCooldown" type="PanelContainer" parent="MarginContainer/Control/Cooldowns"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VerticalLayout" type="VBoxContainer" parent="MarginContainer/Control/Cooldowns/SummonWorkerCooldown"]
+layout_mode = 2
+
+[node name="Container" type="Control" parent="MarginContainer/Control/Cooldowns/SummonWorkerCooldown/VerticalLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SummonWorkerCooldownProgress" type="TextureProgressBar" parent="MarginContainer/Control/Cooldowns/SummonWorkerCooldown/VerticalLayout/Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.01
+fill_mode = 5
+nine_patch_stretch = true
+texture_under = ExtResource("2_4n55f")
+texture_progress = SubResource("GradientTexture2D_u1j05")
+
+[node name="SummonWorkerCooldownSeconds" type="Label" parent="MarginContainer/Control/Cooldowns/SummonWorkerCooldown/VerticalLayout/Container"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/Control/Cooldowns/SummonWorkerCooldown/VerticalLayout"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Hotkey: 2"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Resources" type="VBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -563.0
+offset_bottom = 237.0
+grow_horizontal = 0
+
+[node name="HellCrystals" type="HBoxContainer" parent="MarginContainer/Control/Resources"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CrystalTexture" type="TextureRect" parent="MarginContainer/Control/Resources/HellCrystals"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_c88gh")
+expand_mode = 3
+
+[node name="AmountLabel" type="RichTextLabel" parent="MarginContainer/Control/Resources/HellCrystals"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[font_size=96][color=#008800]x0[/color][/font_size]"
+scroll_active = false
+
+[node name="TimeToSpawn" type="RichTextLabel" parent="MarginContainer/Control/Resources"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_active = false

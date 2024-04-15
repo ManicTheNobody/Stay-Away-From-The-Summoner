@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=3 uid="uid://sltfcy7g17kb"]
+
+[ext_resource type="Script" path="res://SkillCheck.cs" id="1_ly030"]
+[ext_resource type="AudioStream" uid="uid://dqc8did74gna" path="res://sounds/sfx/checkFail.wav" id="2_b45gq"]
+[ext_resource type="AudioStream" uid="uid://dmk2dwnoctuo3" path="res://sounds/sfx/checkSucceed.wav" id="3_b6a41"]
+[ext_resource type="AudioStream" uid="uid://c1rwel4iif50h" path="res://sounds/sfx/bounce2.wav" id="4_vjtl5"]
+
+[sub_resource type="Gradient" id="Gradient_yv3mo"]
+colors = PackedColorArray(0.223529, 0.698039, 0.666667, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f17m3"]
+gradient = SubResource("Gradient_yv3mo")
+width = 1
+height = 1
+
+[sub_resource type="Gradient" id="Gradient_eyfls"]
+colors = PackedColorArray(0.775063, 0.775063, 0.775063, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h5n0y"]
+gradient = SubResource("Gradient_eyfls")
+width = 1
+height = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djl1l"]
+size = Vector2(87, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7uha"]
+size = Vector2(400, 34)
+
+[sub_resource type="Gradient" id="Gradient_771jy"]
+colors = PackedColorArray(0.0781565, 0.0781564, 0.0781564, 0.898039, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cfdv2"]
+gradient = SubResource("Gradient_771jy")
+width = 1
+height = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4f1ul"]
+size = Vector2(17, 50)
+
+[node name="SkillCheck" type="Node2D"]
+script = ExtResource("1_ly030")
+
+[node name="Range" type="Area2D" parent="."]
+
+[node name="RangeSprite" type="Sprite2D" parent="Range"]
+position = Vector2(200, 16.25)
+scale = Vector2(400, 33.5)
+texture = SubResource("GradientTexture2D_f17m3")
+
+[node name="Target" type="Area2D" parent="Range"]
+position = Vector2(0, 16)
+
+[node name="TargetSprite" type="Sprite2D" parent="Range/Target"]
+position = Vector2(43, 0)
+scale = Vector2(86, 34)
+texture = SubResource("GradientTexture2D_h5n0y")
+
+[node name="TargetCollider" type="CollisionShape2D" parent="Range/Target"]
+position = Vector2(43, 0)
+shape = SubResource("RectangleShape2D_djl1l")
+
+[node name="RangeCollider" type="CollisionShape2D" parent="Range"]
+position = Vector2(200, 16)
+shape = SubResource("RectangleShape2D_c7uha")
+
+[node name="Slider" type="Area2D" parent="."]
+position = Vector2(1, 0)
+
+[node name="SliderSprite" type="Sprite2D" parent="Slider"]
+position = Vector2(8.5, 17)
+scale = Vector2(17, 50)
+texture = SubResource("GradientTexture2D_cfdv2")
+
+[node name="SliderCollider" type="CollisionShape2D" parent="Slider"]
+position = Vector2(8.5, 17)
+shape = SubResource("RectangleShape2D_4f1ul")
+
+[node name="StartupDelay" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="SkillCheckFailedSFX" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("2_b45gq")
+bus = &"Sound Effects"
+
+[node name="SkillCheckSucceededSFX" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("3_b6a41")
+bus = &"Sound Effects"
+
+[node name="SkillCheckSliderBounceSFX" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("4_vjtl5")
+bus = &"Sound Effects"

@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://ba3ephjbj67b7"]
+
+[ext_resource type="Script" path="res://Player.cs" id="1_5csnv"]
+[ext_resource type="Texture2D" uid="uid://b07dimwog6ndp" path="res://sprites/player.png" id="2_ik3jy"]
+[ext_resource type="AudioStream" uid="uid://bu5t3oxb04rkb" path="res://sounds/sfx/summonDecoy.wav" id="3_sod4t"]
+[ext_resource type="AudioStream" uid="uid://dla66terl8u3l" path="res://sounds/sfx/summonWorker.wav" id="4_7ua8i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xlqis"]
+radius = 48.0
+height = 204.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_5csnv")
+metadata/IsPlayer = true
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(-1, 6)
+scale = Vector2(0.865217, 0.769231)
+texture = ExtResource("2_ik3jy")
+
+[node name="PlayerCollider" type="CollisionShape2D" parent="."]
+position = Vector2(1, 5)
+shape = SubResource("CapsuleShape2D_xlqis")
+
+[node name="SummonDecoyCooldown" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[node name="SummonWorkerCooldown" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[node name="SummonDecoySFXPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sod4t")
+bus = &"Sound Effects"
+
+[node name="SummonWorkerSFXPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_7ua8i")
+bus = &"Sound Effects"

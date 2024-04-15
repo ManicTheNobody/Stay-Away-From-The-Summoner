@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "dotnet",
+			"task": "build",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"label": "build"
+        },
+        {
+            "label": "build",
+            "command": "d:\\Personal\\Programming\\Tools\\Godot\\Godot.exe",
+            "type": "process",
+            "args": [
+                "--build-solutions",
+                "--path",
+                "${workspaceRoot}",
+                "--headless",
+                "--quit",
+                "-q"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+	]
+}

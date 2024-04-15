@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3cdll4vc7lvc"]
+
+[ext_resource type="Script" path="res://Decoy.cs" id="1_kmrjx"]
+[ext_resource type="Texture2D" uid="uid://cuiva3g2o6sr2" path="res://sprites/decoy.png" id="2_0j6n1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3eo34"]
+radius = 48.0
+height = 204.0
+
+[node name="Decoy" type="CharacterBody2D"]
+script = ExtResource("1_kmrjx")
+metadata/IsDecoy = true
+
+[node name="DecoySprite" type="Sprite2D" parent="."]
+scale = Vector2(0.865, 0.769)
+texture = ExtResource("2_0j6n1")
+
+[node name="DecoyCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_3eo34")
+
+[node name="TimeToLive" type="Timer" parent="."]
+wait_time = 3.5
+one_shot = true
+autostart = true

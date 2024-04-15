@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://2t6of3srqggy"]
+
+[ext_resource type="Script" path="res://Worker.cs" id="1_qsh8c"]
+[ext_resource type="Texture2D" uid="uid://b42hsepcutc6c" path="res://sprites/imp.png" id="2_h6emv"]
+[ext_resource type="AudioStream" uid="uid://dmk2dwnoctuo3" path="res://sounds/sfx/checkSucceed.wav" id="3_k7mtk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bgy2s"]
+radius = 54.0
+height = 156.0
+
+[node name="Worker" type="CharacterBody2D"]
+collision_layer = 3
+script = ExtResource("1_qsh8c")
+metadata/IsWorker = true
+
+[node name="WorkerSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.81579, 0.815789)
+texture = ExtResource("2_h6emv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(29, 4)
+shape = SubResource("CapsuleShape2D_bgy2s")
+
+[node name="ResourceHarvestTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="MiningSuccessSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_k7mtk")
+
+[node name="MiningPersistentSFX" type="AudioStreamPlayer2D" parent="."]

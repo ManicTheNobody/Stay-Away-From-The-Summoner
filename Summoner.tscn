@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://dp5i01gkmynri"]
+
+[ext_resource type="Script" path="res://Summoner.cs" id="1_fl0n3"]
+[ext_resource type="Texture2D" uid="uid://b3d3hn3uqld3" path="res://sprites/summoner.png" id="1_wiu1f"]
+[ext_resource type="Script" path="res://WanderTarget.cs" id="3_tmyre"]
+[ext_resource type="PackedScene" uid="uid://dncii1i8ljfsl" path="res://OffScreenMarker.tscn" id="4_xb8h1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0l04c"]
+radius = 107.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l7dex"]
+radius = 33.0
+height = 204.0
+
+[node name="Summoner" type="CharacterBody2D"]
+script = ExtResource("1_fl0n3")
+
+[node name="SummonerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_wiu1f")
+
+[node name="OffScreenMarker" parent="." instance=ExtResource("4_xb8h1")]
+z_index = 5
+
+[node name="SummonsArea" type="Area2D" parent="."]
+position = Vector2(-2, 0)
+
+[node name="SummonsAreaShape" type="CollisionShape2D" parent="SummonsArea"]
+shape = SubResource("CircleShape2D_0l04c")
+
+[node name="SummonerCollider" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+shape = SubResource("CapsuleShape2D_l7dex")
+
+[node name="WanderTarget" type="Node2D" parent="."]
+script = ExtResource("3_tmyre")
+
+[node name="Timer" type="Timer" parent="WanderTarget"]
+wait_time = 8.0
+autostart = true
+
+[node name="Rays" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="Rays"]
+target_position = Vector2(130, 0)
+collision_mask = 2
+
+[node name="RayCast2D2" type="RayCast2D" parent="Rays"]
+position = Vector2(0, 40)
+target_position = Vector2(130, 0)
+collision_mask = 2
+
+[node name="RayCast2D3" type="RayCast2D" parent="Rays"]
+position = Vector2(0, -40)
+target_position = Vector2(130, 0)
+collision_mask = 2
+
+[node name="SpeedUpTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true

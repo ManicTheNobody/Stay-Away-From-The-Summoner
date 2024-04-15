@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dncii1i8ljfsl"]
+
+[ext_resource type="Script" path="res://OffScreenMarker.cs" id="1_hjhq8"]
+[ext_resource type="Texture2D" uid="uid://bxygg8mlo4quf" path="res://sprites/marker.png" id="2_7niug"]
+
+[node name="OffScreenMarker" type="Node2D"]
+script = ExtResource("1_hjhq8")
+
+[node name="Marker" type="Sprite2D" parent="."]
+texture = ExtResource("2_7niug")
+offset = Vector2(-30.82, -1.355)

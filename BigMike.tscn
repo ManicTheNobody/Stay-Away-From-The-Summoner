@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjyppxvqbf4u1"]
+
+[ext_resource type="Script" path="res://BigMike.cs" id="1_4314p"]
+[ext_resource type="Texture2D" uid="uid://cxew3sj3eeclb" path="res://sprites/bigmike.png" id="2_i280u"]
+[ext_resource type="Script" path="res://Cutscene.cs" id="3_ia4oc"]
+[ext_resource type="AudioStream" uid="uid://4v3waks3x5xu" path="res://sounds/sfx/nextDialogue.wav" id="4_6pqt1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5nf3h"]
+radius = 204.333
+height = 553.333
+
+[node name="BigMike" type="StaticBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 3
+script = ExtResource("1_4314p")
+
+[node name="Bigmike" type="Sprite2D" parent="."]
+texture = ExtResource("2_i280u")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-1, 69.0001, 94.3333, 74.3335, 121, 119.333, 127.667, 142, 134.333, 139, 147.333, 119.333, 159.333, 168, 175.667, 155.667, 194.333, 126.667, 211, 157.667, 215.667, 156.667, 226, 140.333, 230.667, 94.0001, 249.667, 109, 255.667, 93.6668, 251.667, 63.6668, 242.333, 42.6668, -268, 29.6668, -278.333, 61.0001, -276.667, 68.6668, -262.333, 54.6668, -246, 57.3335, -253.333, 104, -239, 129.667, -233.667, 93.0001, -225, 125.333, -221.667, 126.333, -204.667, 96.3335, -195.333, 137.333, -157.667, 90.0001, -119.667, 59.0001)
+
+[node name="TurnInZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TurnInZone"]
+position = Vector2(-6, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5nf3h")
+
+[node name="Cutscene" type="Node2D" parent="."]
+process_mode = 2
+position = Vector2(0, 170)
+script = ExtResource("3_ia4oc")
+
+[node name="Panel" type="Panel" parent="Cutscene"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.0
+offset_top = -40.0
+offset_right = 199.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Cutscene/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="CutsceneArea" type="RichTextLabel" parent="Cutscene/Panel/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[shake]So, you got yourself mixed up in another contract?[/shake]"
+fit_content = true
+
+[node name="Prompt" type="RichTextLabel" parent="Cutscene"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -116.0
+offset_top = 34.0
+offset_right = 117.0
+offset_bottom = 74.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "[center][pulse]Press [E] to continue[/pulse][/center]"
+fit_content = true
+
+[node name="NextDialogueSFX" type="AudioStreamPlayer2D" parent="Cutscene"]
+process_mode = 3
+stream = ExtResource("4_6pqt1")
+volume_db = 10.0
+bus = &"Sound Effects"
+
+[node name="Prompt" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = 151.0
+offset_right = 146.0
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Press [E][/center]"
